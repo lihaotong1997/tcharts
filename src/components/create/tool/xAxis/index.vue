@@ -64,6 +64,46 @@ let form = reactive({
             set:(v:any)=>set('alignTicks',v,undefined)
         }
     }),
+    position:computed(()=>{
+        return {
+            type:3,
+            show:true,
+            name:"位置",
+            tips:"x 轴的位置。",
+            value:state.option.xAxis.position !== undefined ?  state.option.xAxis.position : "bottom",
+            option:[
+                {label:"下方",value:"bottom"},
+                {label:"上方",value:"top"},
+            ],
+            set:(v:any)=>set('position',v,undefined)
+        }
+    }),
+    offset:computed(()=>{
+        return {
+            type:1,
+            show:true,
+            name:"偏移",
+            tips:`X 轴相对于默认位置的偏移，在相同的位置上有多个 X 轴的时候有用。`,
+            value:state.option.xAxis.offset !== undefined ?  state.option.xAxis.offset : 0,
+            set:(v:any)=>set('offset',v,undefined)
+        }
+    }),
+    type:computed(()=>{
+        return {
+            type:3,
+            show:true,
+            name:"类型",
+            tips:`坐标轴类型。`,
+            value:state.option.xAxis.type !== undefined ?  state.option.xAxis.type : "category",
+            option:[
+                {label:"数值轴",value:"value"},
+                {label:"类目轴",value:"category"},
+                {label:"时间轴",value:"time"},
+                {label:"对数轴",value:"log"},
+            ],
+            set:(v:any)=>set('type',v,undefined)
+        }
+    }),
     name:computed(()=>{
         return {
             type:2,
@@ -466,6 +506,66 @@ let form = reactive({
             tips:"在文本超出配置为截断的时候，可以通过该属性配置末尾显示的文本。",
             value: state.option.xAxis?.nameTextStyle?.ellipsis  !== undefined ?  state.option.xAxis.nameTextStyle.ellipsis  : "...",
             set:(v:any)=>set('nameTextStyle',v,'ellipsis')
+        }
+    }),
+    nameGap:computed(():any=>{
+        return {
+            type:1,
+            show:true,
+            name:"名称间隙",
+            tips:"坐标轴名称与轴线之间的距离。",
+            value: state.option.xAxis.nameGap  !== undefined ?  state.option.xAxis.nameGap  : 15,
+            set:(v:any)=>set('nameGap',v,undefined)
+        }
+    }),
+    nameRotate:computed(():any=>{
+        return {
+            type:1,
+            show:true,
+            name:"名称旋转",
+            tips:"坐标轴名字旋转，角度值。",
+            value: state.option.xAxis.nameRotate  !== undefined ?  state.option.xAxis.nameRotate  : 0,
+            set:(v:any)=>set('nameRotate',v,undefined)
+        }
+    }),
+    inverse:computed(():any=>{
+        return {
+            type:0,
+            show:true,
+            name:"反向",
+            tips:"是否是反向坐标轴。",
+            value: state.option.xAxis.inverse  !== undefined ?  state.option.xAxis.inverse  : false,
+            set:(v:any)=>set('inverse',v,undefined)
+        }
+    }),
+    boundaryGap:computed(():any=>{
+        return {
+            type:0,
+            show:true,
+            name:"边界间隙",
+            tips:"类目轴中边界间隙可以配置为开或者关",
+            value: state.option.xAxis.boundaryGap  !== undefined ?  state.option.xAxis.boundaryGap  : false,
+            set:(v:any)=>set('boundaryGap',v,undefined)
+        }
+    }),
+    min:computed(():any=>{
+        return {
+            type:1,
+            show:true,
+            name:"最小值",
+            tips:"坐标轴刻度最小值。不设置时会自动计算最小值保证坐标轴刻度的均匀分布。",
+            value: state.option.xAxis.min  !== undefined ?  state.option.xAxis.min  : "",
+            set:(v:any)=>set('min',v,undefined)
+        }
+    }),
+    max:computed(():any=>{
+        return {
+            type:1,
+            show:true,
+            name:"最大值",
+            tips:"坐标轴刻度最大值。不设置时会自动计算最大值保证坐标轴刻度的均匀分布。",
+            value: state.option.xAxis.max  !== undefined ?  state.option.xAxis.max  : "",
+            set:(v:any)=>set('max',v,undefined)
         }
     }),
 })
